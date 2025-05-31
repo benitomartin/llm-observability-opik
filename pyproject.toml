@@ -1,0 +1,109 @@
+[project]
+name = "llm-observability-opik"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [
+    {name = "Benito Martin"}
+]
+license = {text = "MIT License"}
+requires-python = ">=3.12"
+
+dependencies = [
+    "crawl4ai>=0.6.3",
+    "pymongo>=4.13.0",
+    "python-dotenv>=1.1.0",
+    "zenml[server]>=0.83.0",
+]
+
+[dependency-groups]
+dev = [
+    "pre-commit>=4.2.0",
+]
+lint = [
+    "mypy>=1.16.0",
+    "ruff>=0.11.12",
+    "types-pyyaml>=6.0.12.20250516",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["steps"]
+
+######################################
+# --- Linting & Formatting Tools --- #
+######################################
+
+[tool.ruff]
+# Assume Python 3.12
+target-version = "py312"
+
+# Same as Black.
+line-length = 125
+indent-width = 4
+
+# Exclude a variety of commonly ignored directories.
+exclude = [
+  ".bzr",
+  ".direnv",
+  ".eggs",
+  ".git",
+  ".git-rewrite",
+  ".hg",
+  ".mypy_cache",
+  ".nox",
+  ".pants.d",
+  ".pytype",
+  ".ruff_cache",
+  ".svn",
+  ".tox",
+  ".venv",
+  "__pypackages__",
+  "_build",
+  "buck-out",
+  "build",
+  "dist",
+  "node_modules",
+  "venv",
+]
+
+# Whether to show an enumeration of all fixed lint violations
+show-fixes = true
+
+# Enable common lint rules.
+lint.select = [
+  "B",    # flake8-bugbear
+  "E",    # pycodestyle
+  "F",    # Pyflakes1
+  "I",    # isort
+  "SIM",  # similarity
+  "UP",   # pyupgrade
+]
+lint.ignore = []
+
+# Allow autofix for all enabled rules (when `--fix`) is provided.
+lint.fixable = ["ALL"]
+lint.unfixable = []
+
+[tool.ruff.lint.mccabe]
+# Maximum allowed McCabe complexity.
+max-complexity = 10
+
+
+#########################
+# --- Static Typing --- #
+#########################
+
+[tool.mypy]
+# Mypy configuration.
+files = "."
+ignore_missing_imports = true
+disallow_untyped_defs = true
+check_untyped_defs = true
+warn_redundant_casts = true
+warn_unused_ignores = true
+warn_return_any = true
+strict_optional = true
