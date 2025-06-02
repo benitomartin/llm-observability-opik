@@ -1,0 +1,30 @@
+output_dir: "src/data/team_data"
+summaries_dir: "src/data/team_summaries"
+teams:
+#   - name: "Real Madrid"
+#     url: "https://en.wikipedia.org/wiki/Real_Madrid_CF"
+#     filename: "real_madrid.md"
+#     metadata:
+#       source: "Wikipedia"
+#       language: "en"
+
+#   - name: "Fc Barcelona"
+#     url: "https://en.wikipedia.org/wiki/FC_Barcelona"
+#     filename: "fc_barcelona.md"
+#     metadata:
+#       source: "Wikipedia"
+#       language: "en"
+
+  - name: "Atlético Madrid"
+    url: "https://en.wikipedia.org/wiki/Atlético_Madrid"
+    filename: "atletico_madrid.md"
+    metadata:
+      source: "Wikipedia"
+      language: "en"
+
+  # - name: "Paris Saint-Germain"
+  #   url: "https://en.wikipedia.org/wiki/Paris_Saint-Germain_FC"
+  #   filename: "paris_saint_germain.md"
+  #   metadata:
+  #     source: "Wikipedia"
+  #     language: "en"

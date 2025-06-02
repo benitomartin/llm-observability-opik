@@ -3,10 +3,38 @@
 .PHONY: all ruff mypy clean help
 
 
-build: ## Build the Docker image
-	@echo "Building Docker image..."
-	docker-compose up -d
-	@echo "Docker image built successfully."
+################################################################################
+## ZenML Commands
+################################################################################
+
+zenml-login: ## Login to ZenML using local mode
+	@echo "Logging in to ZenML in local mode..."
+	uv run zenml login --local
+	@echo "ZenML login complete."
+
+zenml-logout: ## Login to ZenML using local mode
+	@echo "Logging out to ZenML in local mode..."
+	uv run zenml logout --local
+	@echo "ZenML log out complete."
+
+
+run-pipeline: ## Run the ZenML pipeline
+	@echo "Running the ZenML pipeline..."
+	uv run src/pipelines/team_pipeline.py
+	@echo "ZenML pipeline run complete."
+
+
+
+
+
+
+
+
+
+# build: ## Build the Docker image
+# 	@echo "Building Docker image..."
+# 	docker-compose up -d
+# 	@echo "Docker image built successfully."
 
 
 ################################################################################

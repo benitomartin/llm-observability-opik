@@ -37,6 +37,7 @@ repos:
       - id: mypy
         additional_dependencies:
           - types-pyyaml>=6.0.12.20250516
+          - types-requests>=2.32.0.20250602
         args:
           [
             --config-file=pyproject.toml,
@@ -53,7 +54,7 @@ repos:
 
 
   - repo: https://github.com/gitleaks/gitleaks
-    rev: v8.26.0
+    rev: v8.27.0
     hooks:
       - id: gitleaks
 

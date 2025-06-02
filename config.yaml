@@ -1,8 +1,0 @@
-output_dir: "team_data"
-teams:
-  - name: "Real Madrid"
-    url: "https://en.wikipedia.org/wiki/Real_Madrid_CF"
-    filename: "real_madrid.md"
-  - name: "Fc Barcelona"
-    url: "https://en.wikipedia.org/wiki/FC_Barcelona"
-    filename: "fc_barcelona.md"
