@@ -1,4 +1,4 @@
-from settings import SummaryConfig
+from src.configs.settings import SummaryConfig
 
 SUMMARY_VARIANTS: dict[str, SummaryConfig] = {
     "default": {
