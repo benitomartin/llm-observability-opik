@@ -10,8 +10,6 @@ from zenml import step
 
 from src.configs.settings import CrawledDoc, YamlConfig
 
-# ----------------- Wikipedia-specific helpers ---------------- #
-
 
 def get_wikipedia_toc(page_title: str) -> list | None:
     """Get table of contents for a Wikipedia page using the MediaWiki API."""
@@ -174,6 +172,23 @@ def crawl_step(config: YamlConfig) -> list[CrawledDoc]:
         logger.info(f"📘 Extracting: {team.name}")
         page_title = team.url.split("/wiki/")[-1]
         file_path = os.path.join(output_dir, team.filename)
+
+        # ✅ Skip if file already exists
+        if os.path.exists(file_path):
+            logger.info(f"✅ Wikipedia content already exists for {team.name}, skipping.")
+            with open(file_path, encoding="utf-8") as f:
+                content: str | None = f.read()
+            results.append(
+                CrawledDoc(
+                    team=team.name,
+                    url=team.url,
+                    filename=team.filename,
+                    content=content or "",
+                    timestamp=datetime.now(UTC),
+                    metadata=team.metadata or {},
+                )
+            )
+            continue
 
         try:
             content = extract_wikipedia_page(page_title, file_path)

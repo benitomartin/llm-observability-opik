@@ -1,30 +1,86 @@
 output_dir: "src/data/team_data"
 summaries_dir: "src/data/team_summaries"
 teams:
-#   - name: "Real Madrid"
-#     url: "https://en.wikipedia.org/wiki/Real_Madrid_CF"
-#     filename: "real_madrid.md"
-#     metadata:
-#       source: "Wikipedia"
-#       language: "en"
+  - name: "real_madrid"
+    url: "https://en.wikipedia.org/wiki/Real_Madrid_CF"
+    filename: "real_madrid.md"
+    metadata:
+      source: "Wikipedia"
+      language: "en"
 
-#   - name: "Fc Barcelona"
-#     url: "https://en.wikipedia.org/wiki/FC_Barcelona"
-#     filename: "fc_barcelona.md"
-#     metadata:
-#       source: "Wikipedia"
-#       language: "en"
+  - name: "fc_barcelona"
+    url: "https://en.wikipedia.org/wiki/FC_Barcelona"
+    filename: "fc_barcelona.md"
+    metadata:
+      source: "Wikipedia"
+      language: "en"
 
-  - name: "Atlético Madrid"
+  - name: "atletico_madrid"
     url: "https://en.wikipedia.org/wiki/Atlético_Madrid"
     filename: "atletico_madrid.md"
     metadata:
       source: "Wikipedia"
       language: "en"
 
-  # - name: "Paris Saint-Germain"
-  #   url: "https://en.wikipedia.org/wiki/Paris_Saint-Germain_FC"
-  #   filename: "paris_saint_germain.md"
-  #   metadata:
-  #     source: "Wikipedia"
-  #     language: "en"
+  - name: "paris_saint_germain"
+    url: "https://en.wikipedia.org/wiki/Paris_Saint-Germain_FC"
+    filename: "paris_saint_germain.md"
+    metadata:
+      source: "Wikipedia"
+      language: "en"
+
+  - name: "chelsea_fc"
+    url: "https://en.wikipedia.org/wiki/Chelsea_Football_Club"
+    filename: "chelsea_fc.md"
+    metadata:
+      source: "Wikipedia"
+      language: "en"
+
+  - name: "manchester_city"
+    url: "https://en.wikipedia.org/wiki/Manchester_City_F.C."
+    filename: "manchester_city.md"
+    metadata:
+      source: "Wikipedia"
+      language: "en"
+
+  - name: "bayern_munich"
+    url: "https://en.wikipedia.org/wiki/Bayern_Munich"
+    filename: "bayern_munich.md"
+    metadata:
+      source: "Wikipedia"
+      language: "en"
+
+  - name: "inter_milan"
+    url: "https://en.wikipedia.org/wiki/Inter_Milan"
+    filename: "inter_milan.md"
+    metadata:
+      source: "Wikipedia"
+      language: "en"
+
+  - name: "porto"
+    url: "https://en.wikipedia.org/wiki/FC_Porto"
+    filename: "porto.md"
+    metadata:
+      source: "Wikipedia"
+      language: "en"
+
+  - name: "benfica"
+    url: "https://en.wikipedia.org/wiki/S.L._Benfica"
+    filename: "benfica.md"
+    metadata:
+      source: "Wikipedia"
+      language: "en"
+
+  - name: "borussia_dortmund"
+    url: "https://en.wikipedia.org/wiki/Borussia_Dortmund"
+    filename: "borussia_dortmund.md"
+    metadata:
+      source: "Wikipedia"
+      language: "en"
+
+  - name: "salzburg"
+    url: "https://en.wikipedia.org/wiki/FC_Red_Bull_Salzburg"
+    filename: "salzburg.md"
+    metadata:
+      source: "Wikipedia"
+      language: "en"

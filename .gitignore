@@ -192,3 +192,8 @@ cython_debug/
 #  refer to https://docs.cursor.com/context/ignore-files
 .cursorignore
 .cursorindexingignore
+
+hf_team_summaries_dataset/
+dataset.py
+hugg.py
+Untitled.ipynb

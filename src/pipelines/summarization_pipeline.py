@@ -1,7 +1,7 @@
 from zenml import pipeline
 
 from src.configs.settings import Settings
-from src.steps.generate_dataset.generate_dataset_step import summarize_step  # adjust import path as needed
+from src.steps.generate_dataset.generate_summaries_step import summarize_step  # adjust import path as needed
 
 settings = Settings()
 settings.load_yaml()  # load YAML into settings.yaml_config

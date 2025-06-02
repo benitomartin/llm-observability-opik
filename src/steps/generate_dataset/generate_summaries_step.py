@@ -7,7 +7,8 @@ from loguru import logger
 from pymongo import MongoClient
 from zenml import step
 
-from src.configs.settings import Settings  # your existing Settings class
+from src.configs.prompts import SUMMARY_VARIANTS
+from src.configs.settings import Settings
 
 # --- Helper functions -------------------------------------------------------- #
 
@@ -35,9 +36,7 @@ def openai_chat(
     temperature: float = 0.3,
 ) -> str | None:
     """Small wrapper with error handling."""
-    client = openai.OpenAI(
-        api_key=Settings().openai_api_key,  # Ensure you have set your OpenAI API key
-    )
+    client = openai.OpenAI(api_key=Settings().openai_api_key)
     try:
         resp = client.chat.completions.create(
             model=model,
@@ -51,23 +50,24 @@ def openai_chat(
         return None
 
 
-def summarize_content(content: str, team: str) -> str | None:
-    """Chunk-aware summarization using OpenAI GPT-4o-mini."""
+def summarize_content(content: str, team: str, prompt_template: str, max_tokens: int) -> str | None:
+    """Chunk-aware summarization using custom prompt and token limit."""
     chunks = split_into_chunks(content)
     if len(chunks) == 1:
         return openai_chat(
             system_msg="You are an expert sports journalist.",
-            user_msg=_FINAL_PROMPT.format(team=team, content=chunks[0]),
+            user_msg=prompt_template.format(team=team, content=chunks[0]),
+            max_tokens=max_tokens,
         )
 
-    # multi-chunk: summarize each, then combine
+    # Multi-chunk: summarize each, then combine
     partials: list[str] = []
     for idx, chunk in enumerate(chunks, 1):
         logger.info(f"  ↳ Summarizing chunk {idx}/{len(chunks)} for {team}")
         summary = openai_chat(
             system_msg="You condense football Wikipedia sections.",
             user_msg=f"Summarize the following part about {team}:\n\n{chunk}",
-            max_tokens=800,
+            max_tokens=max_tokens,
         )
         if summary:
             partials.append(summary)
@@ -75,46 +75,19 @@ def summarize_content(content: str, team: str) -> str | None:
     combined = "\n\n".join(partials)
     return openai_chat(
         system_msg="You compile football summaries.",
-        user_msg=_COMBINE_PROMPT.format(team=team, parts=combined),
+        user_msg="Combine the following parts into a cohesive summary:\n\n" + combined,
+        max_tokens=max_tokens,
     )
 
-
-# --- Prompts (kept outside functions for readability) ----------------------- #
-
-_FINAL_PROMPT = """
-Create a comprehensive summary of {team} from the following Wikipedia content.
-
-Expected sections:
-1. **Overview & History**
-2. **Stadium & Facilities**
-3. **Major Achievements**
-4. **Notable Players & Management**
-5. **Recent Performance**
-6. **Culture & Rivalries**
-
-Keep it factual, structured, and 600-1000 words.
-
-Content:
-{content}
-"""
-
-_COMBINE_PROMPT = """
-Use the partial summaries about {team} (below) to craft one final summary with the same 6 sections.
-
-{parts}
-"""
 
 # --- ZenML step ------------------------------------------------------------- #
 
 
 @step(enable_cache=False)
-def summarize_step(
-    mongodb_uri: str, mongodb_database: str, mongodb_collection: str, summaries_dir: str
-) -> None:  # Changed from -> None to explicit None type
+def summarize_step(mongodb_uri: str, mongodb_database: str, mongodb_collection: str, summaries_dir: str) -> None:
     """Summarize team content from MongoDB and save to files."""
 
-    output_dir = summaries_dir
-    os.makedirs(output_dir, exist_ok=True)
+    os.makedirs(summaries_dir, exist_ok=True)
 
     mongo: MongoClient = MongoClient(mongodb_uri)
     coll = mongo[mongodb_database][mongodb_collection]
@@ -132,20 +105,44 @@ def summarize_step(
             logger.warning(f"Skipping empty content for {team}")
             continue
 
-        logger.info(f"📝 Summarizing {team} (len={len(content)} chars)")
-        summary = summarize_content(content, team)
+        all_summaries = {}
 
-        if not summary:
-            logger.error(f"Failed summarizing {team}")
-            continue
+        for variant, config in SUMMARY_VARIANTS.items():
+            filename = f"{team.lower().replace(' ', '_')}_summary_{variant}.txt"
+            out_path = os.path.join(summaries_dir, team, filename)
 
-        out_path = os.path.join(output_dir, f"{team.lower().replace(' ', '_')}_summary.txt")
-        with open(out_path, "w", encoding="utf-8") as f:
-            f.write(summary)
-        logger.success(f"Summary saved → {out_path}")
+            # ✅ Skip summarization if file already exists
+            if os.path.exists(out_path):
+                logger.info(f"✅ Summary already exists for {team} [{variant}], skipping.")
+                continue
 
-        rows.append({"instruction": content, "answer": summary})
-        coll.update_one({"_id": d["_id"]}, {"$set": {"summary": summary}})
-        time.sleep(0.2)
+            logger.info(f"📝 Summarizing {team} [{variant}] (len={len(content)} chars)")
+            summary = summarize_content(content, team, config["prompt"], config["max_tokens"])
+
+            if not summary:
+                logger.error(f"❌ Failed summarizing {team} [{variant}]")
+                continue
+
+            os.makedirs(os.path.dirname(out_path), exist_ok=True)
+
+            with open(out_path, "w", encoding="utf-8") as f:
+                f.write(summary)
+
+            logger.success(f"✅ Summary saved → {out_path}")
+
+            rows.append(
+                {
+                    "instruction": config["prompt"].format(team=team, content=content),
+                    "answer": summary,
+                }
+            )
+
+            all_summaries[variant] = summary
+
+            time.sleep(0.2)
+
+        # Update MongoDB document with all summaries
+        if all_summaries:
+            coll.update_one({"_id": d["_id"]}, {"$set": {"summaries": all_summaries}})
 
     mongo.close()

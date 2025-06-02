@@ -1,5 +1,5 @@
 from datetime import datetime
-from typing import ClassVar
+from typing import ClassVar, TypedDict
 
 import yaml
 from pydantic import BaseModel, Field
@@ -26,6 +26,11 @@ class YamlConfig(BaseModel):
     output_dir: str
     summaries_dir: str
     teams: list[Team]
+
+
+class SummaryConfig(TypedDict):
+    prompt: str
+    max_tokens: int
 
 
 def load_yaml_config(path: str) -> YamlConfig:
