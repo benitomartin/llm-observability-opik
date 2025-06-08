@@ -1,5 +1,13 @@
 # Makefile
 
+# Check if .env exists
+ifeq (,$(wildcard .env))
+$(error .env file is missing at .env. Please create one based on .env.example)
+endif
+
+# Load environment variables from .env
+include .env
+
 .PHONY: all ruff mypy clean help
 
 
@@ -18,17 +26,41 @@ zenml-logout: ## Login to ZenML using local mode
 	@echo "ZenML log out complete."
 
 
-run-pipeline: ## Run the ZenML pipeline
+run-team-pipeline: ## Run the ZenML team pipeline
 	@echo "Running the ZenML pipeline..."
 	uv run src/pipelines/team_pipeline.py
 	@echo "ZenML pipeline run complete."
 
 
+run-summarization-pipeline: ## Run the ZenML summarization pipeline
+	@echo "Running the ZenML pipeline..."
+	uv run src/pipelines/summarization_pipeline.py
+	@echo "ZenML pipeline run complete."
+
+################################################################################
+## MongoDB Commands
+################################################################################
 
 
+create-collection-index: ## Create the MongoDB collection
+	@echo "Creating the MongoDB collection index..."
+	uv run src/infra/create_collection.py
+	@echo "MongoDB collection created successfully."
+
+insert-embeddings: ## Insert embeddings into the MongoDB collection
+	@echo "Inserting embeddings into the MongoDB collection index..."
+	uv run src/infra/insert_embeddings.py
+	@echo "Embeddings inserted successfully."
 
 
+################################################################################
+## Evaluation Commands
+################################################################################
 
+run-evaluation: ## Run the evaluation script
+	@echo "Running the evaluation script..."
+	uv run src/evaluation/evaluate_summaries_opik.py
+	@echo "Evaluation script run complete."
 
 
 # build: ## Build the Docker image

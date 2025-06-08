@@ -1,7 +1,7 @@
 from zenml import pipeline
 
 from src.configs.settings import Settings
-from src.steps.generate_dataset.generate_summaries_step import summarize_step  # adjust import path as needed
+from src.steps.generate_summaries.generate_summaries_step import summarize_step  # adjust import path as needed
 
 settings = Settings()
 settings.load_yaml()  # load YAML into settings.yaml_config
@@ -13,7 +13,6 @@ def summarization_pipeline() -> None:
         mongodb_uri=settings.mongodb_uri,
         mongodb_database=settings.mongodb_database,
         mongodb_collection=settings.mongodb_collection,
-        summaries_dir=settings.yaml_config.summaries_dir,
     )
 
 

@@ -7,7 +7,7 @@ from zenml import step
 from src.configs.settings import Settings
 
 
-@step(enable_cache=True)
+@step(enable_cache=False)
 def mongo_ingest_step(documents: list[dict[str, Any]]) -> None:
     """
     Insert or update documents in the MongoDB collection.
@@ -33,7 +33,7 @@ def mongo_ingest_step(documents: list[dict[str, Any]]) -> None:
 
             if existing:
                 if existing.get("content") != doc["content"]:
-                    collection.replace_one(query, doc)
+                    collection.update_one(query, {"$set": doc})
                     logger.success(f"Updated document for query: {query}")
                 else:
                     logger.info(f"No change for query: {query} — skipping update")

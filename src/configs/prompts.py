@@ -51,3 +51,13 @@ SUMMARY_VARIANTS: dict[str, SummaryConfig] = {
         "max_tokens": 1200,
     },
 }
+
+QUERY_PROMPT = """
+                You are a helpful assistant. Based on the context below, answer the question concisely.
+
+                Context:
+                {context}
+
+                {query}
+                Answer:
+                """

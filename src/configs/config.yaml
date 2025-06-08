@@ -1,5 +1,4 @@
 output_dir: "src/data/team_data"
-summaries_dir: "src/data/team_summaries"
 teams:
   - name: "real_madrid"
     url: "https://en.wikipedia.org/wiki/Real_Madrid_CF"

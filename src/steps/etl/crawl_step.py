@@ -151,7 +151,7 @@ def extract_wikipedia_page(page_title: str, out_path: str, sleep: float = 0.3) -
 # ------------------------ ZenML Step ------------------------- #
 
 
-@step(enable_cache=True)
+@step(enable_cache=False)
 def crawl_step(config: YamlConfig) -> list[CrawledDoc]:
     """
     ZenML pipeline step: Extracts Wikipedia articles and stores them as text files.

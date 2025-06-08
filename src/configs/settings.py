@@ -24,7 +24,6 @@ class CrawledDoc(BaseModel):
 
 class YamlConfig(BaseModel):
     output_dir: str
-    summaries_dir: str
     teams: list[Team]
 
 
@@ -49,7 +48,7 @@ class Settings(BaseSettings):
 
     # yaml_config: YamlConfig | None = None
 
-    yaml_config: YamlConfig = Field(default_factory=lambda: YamlConfig(output_dir="", summaries_dir="", teams=[]))
+    yaml_config: YamlConfig = Field(default_factory=lambda: YamlConfig(output_dir="", teams=[]))
 
     # MongoDB connection settings
     mongodb_uri: str = Field(
@@ -59,11 +58,26 @@ class Settings(BaseSettings):
 
     mongodb_collection: str = Field(default="teams", description="Name of the MongoDB collection to use.")
 
+    mongodb_collection_index: str = Field(
+        default="summary_vectors", description="Name of the MongoDB collection for summary vectors."
+    )
+
+    mongodb_collection_index_name: str = Field(
+        default="summary_vectors_index", description="Name of the MongoDB vector search index."
+    )
+
     mongodb_query_fields: list[str] = Field(
         default_factory=lambda: ["team", "source_url"], description="Fields to use as the query filter for MongoDB upserts."
     )
 
     openai_api_key: str = Field(default="", description="OpenAI API key for accessing the OpenAI services.")
+
+    openai_embedding_model: str = Field(
+        default="text-embedding-3-small", description="OpenAI model for generating text embeddings."
+    )
+    openai_llm_model: str = Field(default="gpt-4o-mini", description="OpenAI model for generating text completions.")
+
+    comet_api_key: str = Field(default="", description="Comet API key for tracking experiments.")
 
     def load_yaml(self) -> None:
         """Loads the YAML configuration file and updates yaml_config."""

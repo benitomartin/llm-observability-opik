@@ -6,7 +6,7 @@ from zenml import step
 from src.configs.settings import CrawledDoc
 
 
-@step(enable_cache=True)
+@step(enable_cache=False)
 def parse_step(crawled_data: list[CrawledDoc]) -> list[dict[str, Any]]:
     """
     Parses crawled content and adds metadata.

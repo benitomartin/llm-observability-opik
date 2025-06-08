@@ -1,4 +1,3 @@
-import os
 import time
 from typing import cast
 
@@ -84,65 +83,46 @@ def summarize_content(content: str, team: str, prompt_template: str, max_tokens:
 
 
 @step(enable_cache=False)
-def summarize_step(mongodb_uri: str, mongodb_database: str, mongodb_collection: str, summaries_dir: str) -> None:
-    """Summarize team content from MongoDB and save to files."""
-
-    os.makedirs(summaries_dir, exist_ok=True)
+def summarize_step(
+    mongodb_uri: str,
+    mongodb_database: str,
+    mongodb_collection: str,
+) -> None:
+    """Summarize team content from MongoDB and store summaries in the 'summaries' field."""
 
     mongo: MongoClient = MongoClient(mongodb_uri)
     coll = mongo[mongodb_database][mongodb_collection]
 
-    docs = list(coll.find({}, {"_id": 1, "team": 1, "content": 1}))
+    docs = list(coll.find({}, {"_id": 1, "team": 1, "content": 1, "summaries": 1}))
     logger.info(f"📄 Documents fetched: {len(docs)}")
-
-    rows = []
 
     for d in docs:
         team = d["team"]
         content = d["content"]
 
         if not content.strip():
-            logger.warning(f"Skipping empty content for {team}")
+            logger.warning(f"⚠️ Skipping empty content for {team}")
             continue
 
-        all_summaries = {}
+        existing_summaries = d.get("summaries", {})
+        all_summaries = existing_summaries.copy()  # Start with current summaries
 
         for variant, config in SUMMARY_VARIANTS.items():
-            filename = f"{team.lower().replace(' ', '_')}_summary_{variant}.txt"
-            out_path = os.path.join(summaries_dir, team, filename)
-
-            # ✅ Skip summarization if file already exists
-            if os.path.exists(out_path):
-                logger.info(f"✅ Summary already exists for {team} [{variant}], skipping.")
+            existing = existing_summaries.get(variant)
+            if existing and existing.strip():
+                logger.info(f"✅ Skipping existing summary for {team} [{variant}]")
                 continue
 
             logger.info(f"📝 Summarizing {team} [{variant}] (len={len(content)} chars)")
             summary = summarize_content(content, team, config["prompt"], config["max_tokens"])
 
-            if not summary:
-                logger.error(f"❌ Failed summarizing {team} [{variant}]")
-                continue
+            if summary:
+                all_summaries[variant] = summary
+                time.sleep(0.2)
 
-            os.makedirs(os.path.dirname(out_path), exist_ok=True)
-
-            with open(out_path, "w", encoding="utf-8") as f:
-                f.write(summary)
-
-            logger.success(f"✅ Summary saved → {out_path}")
-
-            rows.append(
-                {
-                    "instruction": config["prompt"].format(team=team, content=content),
-                    "answer": summary,
-                }
-            )
-
-            all_summaries[variant] = summary
-
-            time.sleep(0.2)
-
-        # Update MongoDB document with all summaries
-        if all_summaries:
+        # Update MongoDB document if there are any changes
+        if all_summaries != existing_summaries:
             coll.update_one({"_id": d["_id"]}, {"$set": {"summaries": all_summaries}})
+            logger.info(f"📥 Updated summaries for {team}")
 
     mongo.close()
