@@ -1279,6 +1279,9 @@ lint = [
     { name = "types-pyyaml" },
     { name = "types-requests" },
 ]
+test = [
+    { name = "pytest" },
+]
 
 [package.metadata]
 requires-dist = [
@@ -1306,6 +1309,7 @@ lint = [
     { name = "types-pyyaml", specifier = ">=6.0.12.20250516" },
     { name = "types-requests", specifier = ">=2.32.0.20250602" },
 ]
+test = [{ name = "pytest", specifier = ">=8.4.0" }]
 
 [[package]]
 name = "loguru"

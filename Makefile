@@ -37,6 +37,11 @@ run-summarization-pipeline: ## Run the ZenML summarization pipeline
 	uv run src/pipelines/summarization_pipeline.py
 	@echo "ZenML pipeline run complete."
 
+run-dataset-pipeline: ## Run the ZenML dataset pipeline
+	@echo "Running the ZenML dataset pipeline..."
+	uv run src/pipelines/dataset_pipeline.py
+	@echo "ZenML dataset pipeline run complete."
+
 ################################################################################
 ## MongoDB Commands
 ################################################################################
@@ -52,21 +57,38 @@ insert-embeddings: ## Insert embeddings into the MongoDB collection
 	uv run src/infra/insert_embeddings.py
 	@echo "Embeddings inserted successfully."
 
+################################################################################
+## Search Commands
+################################################################################
+
+run-search: ## Run the search script
+	@echo "Running the search script..."
+	uv run src/similarity/search.py
+	@echo "Search script run complete."
 
 ################################################################################
 ## Evaluation Commands
 ################################################################################
 
-run-evaluation: ## Run the evaluation script
+run-evaluate-summaries: ## Run the evaluation script
 	@echo "Running the evaluation script..."
 	uv run src/evaluation/evaluate_summaries_opik.py
 	@echo "Evaluation script run complete."
 
+run-evaluate-dataset: ## Evaluate the dataset using the MongoDB collection
+	@echo "Evaluating the dataset using the MongoDB collection..."
+	uv run src/evaluation/evaluate_dataset.py
+	@echo "Dataset evaluation complete."
 
-# build: ## Build the Docker image
-# 	@echo "Building Docker image..."
-# 	docker-compose up -d
-# 	@echo "Docker image built successfully."
+
+#################################################################################
+## Testing Commands
+#################################################################################
+
+run-tests: ## Run all tests
+	@echo "Running all tests..."
+	uv run pytest
+	@echo "All tests completed."
 
 
 ################################################################################

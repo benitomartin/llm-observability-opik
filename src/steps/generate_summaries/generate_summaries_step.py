@@ -1,85 +1,11 @@
 import time
-from typing import cast
 
-import openai
 from loguru import logger
 from pymongo import MongoClient
 from zenml import step
 
 from src.configs.prompts import SUMMARY_VARIANTS
-from src.configs.settings import Settings
-
-# --- Helper functions -------------------------------------------------------- #
-
-
-def rough_token_count(text: str) -> int:
-    """≈1 token per 0.75 words (very rough)."""
-    return int(len(text.split()) / 0.75)
-
-
-def split_into_chunks(text: str, max_tokens: int = 100_000) -> list[str]:
-    """Return chunks small enough for the model."""
-    if rough_token_count(text) <= max_tokens:
-        return [text]
-
-    words = text.split()
-    chunk_len = int(len(words) * max_tokens / rough_token_count(text))
-    return [" ".join(words[i : i + chunk_len]) for i in range(0, len(words), chunk_len)]
-
-
-def openai_chat(
-    system_msg: str,
-    user_msg: str,
-    model: str = "gpt-4o-mini",
-    max_tokens: int = 1_500,
-    temperature: float = 0.3,
-) -> str | None:
-    """Small wrapper with error handling."""
-    client = openai.OpenAI(api_key=Settings().openai_api_key)
-    try:
-        resp = client.chat.completions.create(
-            model=model,
-            messages=[{"role": "system", "content": system_msg}, {"role": "user", "content": user_msg}],
-            max_tokens=max_tokens,
-            temperature=temperature,
-        )
-        return cast(str, resp.choices[0].message.content)
-    except Exception as err:
-        logger.error(f"OpenAI error: {err}")
-        return None
-
-
-def summarize_content(content: str, team: str, prompt_template: str, max_tokens: int) -> str | None:
-    """Chunk-aware summarization using custom prompt and token limit."""
-    chunks = split_into_chunks(content)
-    if len(chunks) == 1:
-        return openai_chat(
-            system_msg="You are an expert sports journalist.",
-            user_msg=prompt_template.format(team=team, content=chunks[0]),
-            max_tokens=max_tokens,
-        )
-
-    # Multi-chunk: summarize each, then combine
-    partials: list[str] = []
-    for idx, chunk in enumerate(chunks, 1):
-        logger.info(f"  ↳ Summarizing chunk {idx}/{len(chunks)} for {team}")
-        summary = openai_chat(
-            system_msg="You condense football Wikipedia sections.",
-            user_msg=f"Summarize the following part about {team}:\n\n{chunk}",
-            max_tokens=max_tokens,
-        )
-        if summary:
-            partials.append(summary)
-
-    combined = "\n\n".join(partials)
-    return openai_chat(
-        system_msg="You compile football summaries.",
-        user_msg="Combine the following parts into a cohesive summary:\n\n" + combined,
-        max_tokens=max_tokens,
-    )
-
-
-# --- ZenML step ------------------------------------------------------------- #
+from src.steps.generate_summaries.helpers import summarize_content
 
 
 @step(enable_cache=False)
@@ -88,8 +14,15 @@ def summarize_step(
     mongodb_database: str,
     mongodb_collection: str,
 ) -> None:
-    """Summarize team content from MongoDB and store summaries in the 'summaries' field."""
+    """
+    Summarize team content documents from a MongoDB collection.
+    Updates each document by adding summaries to the 'summaries' field.
 
+    Args:
+        mongodb_uri (str): MongoDB connection URI.
+        mongodb_database (str): Database name.
+        mongodb_collection (str): Collection name containing team content.
+    """
     mongo: MongoClient = MongoClient(mongodb_uri)
     coll = mongo[mongodb_database][mongodb_collection]
 

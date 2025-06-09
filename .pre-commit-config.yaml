@@ -1,7 +1,7 @@
 repos:
   - repo: https://github.com/astral-sh/uv-pre-commit
     # uv version.
-    rev: 0.7.9
+    rev: 0.7.12
     hooks:
       # Update the uv lockfile
       - id: uv-lock
@@ -20,7 +20,7 @@ repos:
       - id: detect-private-key
 
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.11.12
+    rev: v0.11.13
     hooks:
     - id: ruff
       args:
@@ -54,16 +54,16 @@ repos:
 
 
   - repo: https://github.com/gitleaks/gitleaks
-    rev: v8.27.0
+    rev: v8.27.2
     hooks:
       - id: gitleaks
 
 
-  # - repo: local
-  #   hooks:
-  #     - id: pytest
-  #       name: pytest
-  #       entry: pytest
-  #       language: system
-  #       types: [python]
-  #       pass_filenames: false
+  - repo: local
+    hooks:
+      - id: pytest
+        name: pytest
+        entry: pytest
+        language: system
+        types: [python]
+        pass_filenames: false

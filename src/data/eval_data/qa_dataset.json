@@ -1,0 +1,42 @@
+[
+  {
+    "input": "When was Real Madrid CF founded?",
+    "expected_output": "Real Madrid CF was founded on March 6, 1902."
+  },
+  {
+    "input": "What is the name of Real Madrid's home stadium?",
+    "expected_output": "The name of Real Madrid's home stadium is the Santiago Bernabéu Stadium."
+  },
+  {
+    "input": "Can you describe the early history of Real Madrid?",
+    "expected_output": "Real Madrid Club de Fútbol was founded on March 6, 1902, originally named Madrid Football Club. In 1920, the club was granted the title \"Real\" (Royal) by King Alfonso XIII, denoting its prestigious status. The early years of the club were characterized by participation in regional competitions, but it quickly gained prominence, becoming one of the founding clubs of La Liga in 1929. The club flourished in the 1930s and 1940s, establishing itself as a dominant force in Spanish football, setting the stage for significant successes in the decades that followed, particularly under influential presidents like Santiago Bernabéu starting in 1943."
+  },
+  {
+    "input": "Who are some legendary players in Real Madrid's history?",
+    "expected_output": "Some legendary players in Real Madrid's history include Alfredo Di Stéfano, Ferenc Puskás, Raúl, Cristiano Ronaldo, Karim Benzema, and Luka Modrić."
+  },
+  {
+    "input": "How has Real Madrid performed in recent La Liga seasons (2020-2025)?",
+    "expected_output": "Real Madrid secured the La Liga title in the 2019-20 season (34th title) and again in the 2021-22 season. In the 2023-24 season, they finished with 95 points, winning the league and marking it as their second-best winning campaign in history. Overall, Real Madrid has demonstrated consistent domestic dominance during these years."
+  },
+  {
+    "input": "What are some of Real Madrid’s recent achievements from 2020 to 2025?",
+    "expected_output": "From 2020 to 2025, Real Madrid's recent achievements include:\n\n1. **La Liga Titles**: Secured the 34th title in the 2019-20 season and the 36th title in the 2023-24 season.\n2. **Champions League Titles**: Won its 14th title in the 2021-22 season and its 15th title in the 2023-24 season.\n3. **Supercopa de España**: Claimed the title in January 2022.\n4. **Copa del Rey**: Won the tournament in the 2022-23 season.\n5. **FIFA Club World Cup**: Triumphed in 2022.\n6. **FIFA Intercontinental Cup**: Lifted the inaugural title in 2025.\n7. **Squad Enhancements**: Notable signings like Jude Bellingham and Kylian Mbappé in 2025."
+  },
+  {
+    "input": "Who is the current manager of Real Madrid?",
+    "expected_output": "The current manager of Real Madrid is Xabi Alonso."
+  },
+  {
+    "input": "How many UEFA Champions League titles has Real Madrid won?",
+    "expected_output": "Real Madrid has won 15 UEFA Champions League titles."
+  },
+  {
+    "input": "What are some of Real Madrid's most significant trophies?",
+    "expected_output": "Some of Real Madrid's most significant trophies include:\n\n- **La Liga Titles**: 36\n- **Copa del Rey Titles**: 20\n- **Supercopa de España Titles**: 13\n- **European Cup/UEFA Champions League Titles**: 15 (most in history)\n- **UEFA Super Cup Titles**: 6\n- **FIFA Club World Cup Titles**: 5\n- **Intercontinental Cup Titles**: 3"
+  },
+  {
+    "input": "Who are Real Madrid's biggest rivals and what is the significance of their rivalry?",
+    "expected_output": "Real Madrid's biggest rivals are FC Barcelona and Atlético Madrid. \n\n1. **FC Barcelona**: Their rivalry, known as El Clásico, represents broader cultural and political tensions in Spain, symbolizing the historical struggle between the centralist views of Madrid and the regionalism of Catalonia. This rivalry is one of the most famous in sports and is highly charged with dramatic matches and significant implications in both domestic and European competitions.\n\n2. **Atlético Madrid**: The rivalry is known as El Derbi madrileño and is characterized by contrasting identities and historical contexts. Atlético fans often view themselves as the underdogs against the perceived establishment represented by Real Madrid. This local rivalry adds intensity to matches, reflecting the competitive nature of both clubs within Madrid. \n\nBoth rivalries contribute to the rich tapestry of Spanish football and significantly impact the clubs' identities and fan bases."
+  }
+]

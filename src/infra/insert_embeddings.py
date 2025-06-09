@@ -8,8 +8,11 @@ from src.configs.settings import Settings
 
 def insert_embeddings() -> None:
     """
-    Generate OpenAI embeddings and insert into MongoDB,
-    skipping duplicates.
+    Generate OpenAI embeddings for summaries stored in the MongoDB source collection
+    and insert them into the vector collection, skipping duplicates.
+
+    Raises:
+        ValueError: If MongoDB URI or OpenAI API key are not set in the settings.
     """
     settings = Settings()
     mongodb_uri = settings.mongodb_uri

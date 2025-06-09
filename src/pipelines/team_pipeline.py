@@ -11,7 +11,9 @@ settings.load_yaml()
 
 @pipeline
 def team_pipeline() -> None:
-    # Type guard to ensure yaml_config is not None
+    """
+    ETL pipeline for crawling, parsing, and ingesting team data.
+    """
     if settings.yaml_config is None:
         raise ValueError("YAML configuration not loaded")
 

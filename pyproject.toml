@@ -36,6 +36,9 @@ lint = [
     "types-pyyaml>=6.0.12.20250516",
     "types-requests>=2.32.0.20250602",
 ]
+test = [
+    "pytest>=8.4.0",
+]
 
 [build-system]
 requires = ["hatchling"]
@@ -119,3 +122,16 @@ warn_redundant_casts = true
 warn_unused_ignores = false
 warn_return_any =false
 strict_optional = true
+
+#########################
+# --- Testing Tools --- #
+#########################
+
+[tool.pytest.ini_options]
+testpaths = [ "src/tests" ]
+python_files = [ "test_*.py" ]
+addopts = "-ra -v -s"
+filterwarnings = [
+    "ignore::DeprecationWarning",
+    "ignore::UserWarning"
+]

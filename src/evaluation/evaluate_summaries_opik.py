@@ -20,6 +20,15 @@ from src.evaluation.metrics import (
 
 
 def prepare_dataset() -> tuple[Any, int]:
+    """
+    Connects to MongoDB, extracts football team articles and summaries, and constructs
+    an evaluation dataset compatible with Opik.
+
+    Returns:
+        tuple:
+            - dataset: Opik dataset object containing summary-reference pairs.
+            - num_teams: Total number of team documents retrieved from the database.
+    """
     client: MongoClient = MongoClient(settings.mongodb_uri)
     db = client[settings.mongodb_database]
     teams_collection = db[settings.mongodb_collection]
@@ -63,6 +72,15 @@ def prepare_dataset() -> tuple[Any, int]:
 
 @track
 def summary_evaluation_task(data: dict[str, Any]) -> dict[str, Any]:
+    """
+    Extracts and prepares data for evaluation, to be consumed by Opik.
+
+    Args:
+        data (dict): Input dictionary containing team, reference article, and summary info.
+
+    Returns:
+        dict: A structured dictionary with reference, candidate, metadata, and lengths.
+    """
     return {
         "reference": data["reference"],
         "candidate": data["summary"],
@@ -74,6 +92,17 @@ def summary_evaluation_task(data: dict[str, Any]) -> dict[str, Any]:
 
 
 def run_evaluation_with_opik(experiment_name: str | None = None) -> pd.DataFrame:
+    """
+    Runs an Opik evaluation of football team summaries using BERTScore, Cosine Similarity,
+    and a Combined metric. Logs summary statistics and returns results as a DataFrame.
+
+    Args:
+        experiment_name (str | None): Optional name for the experiment. If not provided,
+        a timestamped name will be generated.
+
+    Returns:
+        pd.DataFrame: Evaluation results, including team, summary type, and scores.
+    """
     if experiment_name is None:
         experiment_name = f"summary_eval_{pd.Timestamp.now():%Y%m%d_%H%M%S}"
 

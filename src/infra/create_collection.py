@@ -9,6 +9,13 @@ from src.configs.settings import Settings
 
 
 def create_summary_vectors_collection(db: Database) -> None:
+    """
+    Create a MongoDB collection for storing summary vectors if it doesn't already exist.
+
+    Args:
+        db: The MongoDB database instance.
+        collection_name: The name of the collection to create.
+    """
     try:
         db.create_collection(settings.mongodb_collection_index)
         logger.info(f"Collection {settings.mongodb_collection_index} created successfully.")
@@ -17,6 +24,13 @@ def create_summary_vectors_collection(db: Database) -> None:
 
 
 def create_vector_search_index(vector_collection: Collection) -> None:
+    """
+    Create a vector search index on the specified collection if it doesn't exist.
+
+    Args:
+        vector_collection: The MongoDB collection where the index will be created.
+        index_name: The name of the search index.
+    """
     search_index_model = SearchIndexModel(
         definition={
             "fields": [
@@ -40,7 +54,7 @@ def create_vector_search_index(vector_collection: Collection) -> None:
         logger.warning(f"Vector search index '{settings.mongodb_collection_index_name}' already exists.")
 
 
-def main() -> None:
+if __name__ == "__main__":
     settings = Settings()
     client: MongoClient = MongoClient(settings.mongodb_uri)
     db = client[settings.mongodb_database]
@@ -48,10 +62,3 @@ def main() -> None:
     create_summary_vectors_collection(db)
     vector_collection = db[settings.mongodb_collection_index]
     create_vector_search_index(vector_collection)
-
-
-if __name__ == "__main__":
-    # Initialize settings
-    settings = Settings()
-
-    main()

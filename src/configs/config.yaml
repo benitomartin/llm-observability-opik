@@ -1,4 +1,6 @@
 output_dir: "src/data/team_data"
+eval_dir: "src/data/eval_data"
+eval_dataset: "qa_dataset.json"
 teams:
   - name: "real_madrid"
     url: "https://en.wikipedia.org/wiki/Real_Madrid_CF"

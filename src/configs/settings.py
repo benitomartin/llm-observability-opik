@@ -24,6 +24,8 @@ class CrawledDoc(BaseModel):
 
 class YamlConfig(BaseModel):
     output_dir: str
+    eval_dir: str
+    eval_dataset: str
     teams: list[Team]
 
 
@@ -48,7 +50,9 @@ class Settings(BaseSettings):
 
     # yaml_config: YamlConfig | None = None
 
-    yaml_config: YamlConfig = Field(default_factory=lambda: YamlConfig(output_dir="", teams=[]))
+    yaml_config: YamlConfig = Field(
+        default_factory=lambda: YamlConfig(output_dir="", eval_dir="", eval_dataset="", teams=[])
+    )
 
     # MongoDB connection settings
     mongodb_uri: str = Field(
@@ -76,6 +80,10 @@ class Settings(BaseSettings):
         default="text-embedding-3-small", description="OpenAI model for generating text embeddings."
     )
     openai_llm_model: str = Field(default="gpt-4o-mini", description="OpenAI model for generating text completions.")
+
+    openai_llm_judge_model: str = Field(
+        default="gpt-4o", description="OpenAI model for judging the quality of text completions."
+    )
 
     comet_api_key: str = Field(default="", description="Comet API key for tracking experiments.")
 
