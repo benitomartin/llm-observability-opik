@@ -97,10 +97,11 @@ run-tests: ## Run all tests
 
 all: ruff mypy clean ## Run all linting and formatting commands
 
-ruff: ## Run Ruff linter
-	@echo "Running Ruff linter..."
-	uv run ruff check . --fix --exit-non-zero-on-fix
-	@echo "Ruff linter complete."
+ruff: ## Run Ruff formatter and linter with auto-fix
+	@echo "Running Ruff formatter and linter..."
+	uv run ruff format --check .
+	uv run ruff check . --fix
+	@echo "Ruff checks complete."
 
 mypy: ## Run MyPy static type checker
 	@echo "Running MyPy static type checker..."

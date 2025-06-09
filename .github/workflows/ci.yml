@@ -1,0 +1,38 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  lint-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v5
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version-file: .python-version
+
+      - name: Install dependencies
+        run: uv sync --all-groups
+
+      - name: 💅 Format Check
+        run: |
+          uv run ruff format --check .
+
+      - name: 🔎 Lint Check
+        run: |
+          uv run ruff check . --fix --exit-non-zero-on-fix
+
+      - name: Type check with mypy
+        run: uv run mypy
+
+      - name: Run tests
+        run: uv run pytest
