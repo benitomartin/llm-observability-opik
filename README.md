@@ -1,6 +1,6 @@
-# Sport Teams AI Evaluation and Observability
+# Football Teams AI Evaluation and Observability
 
-A **modular pipeline** for evaluating and observing the performance of large language models (LLMs) applied to sports content. This project uses Wikipedia data about football teams to **generate summaries, create QA datasets**, and **evaluate model responses** using state-of-the-art tools:
+A **modular pipeline** for evaluating and observing the performance of large language models (LLMs) applied to football teams content. This project uses Wikipedia data about football teams to **generate summaries, create QA datasets**, and **evaluate model responses** using state-of-the-art tools:
 
 - **ZenML** for pipeline orchestration and experiment tracking
 - **MongoDB** for structured storage and vector-based retrieval
