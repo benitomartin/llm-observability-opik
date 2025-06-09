@@ -1,6 +1,12 @@
 # Sport Teams AI Evaluation and Observability
 
-A modular pipeline for LLM observability, evaluation, and summarization using **ZenML**, **MongoDB**, and **Opik**.
+A **modular pipeline** for evaluating and observing the performance of large language models (LLMs) applied to sports content. This project uses Wikipedia data about football teams to **generate summaries, create QA datasets**, and **evaluate model responses** using state-of-the-art tools:
+
+- **ZenML** for pipeline orchestration and experiment tracking
+- **MongoDB** for structured storage and vector-based retrieval
+- **Opik** for LLM evaluation and observability
+
+Designed for ""research"", **benchmarking**, and **xperimentation**, the system is fully configurable, supports **semantic search**, and enables fine-grained analysis of LLM behavior across a range of evaluation metrics.
 
 ## Overview
 
@@ -58,17 +64,23 @@ A modular pipeline for LLM observability, evaluation, and summarization using **
 
 1. **Configure environment**
 
-   - Copy `.env.example` to `.env` and update with your credentials:
+   Copy `.env.example` to `.env` and update with your credentials:
 
-     ```bash
-     cp .env.example .env
-     ```
+   ```bash
+   cp .env.example .env
+   ```
 
 1. **Create MongoDB Account**
 
-   You need to create a MongoDB account to store and query data. Once the account has been created, you need to get the MONGODB_URI`and add it into the`.env file\`.
+   Create an account at [MongoDB Atlas](https://www.mongodb.com/):
 
-   This project consider two collections. One to store the wikipedia articles with summaries and another with additional vector index and embeddings for similarity search.
+   - Get your `MONGODB_URI` and update your `.env` file accordingly
+
+   - The project uses two collections:
+
+     - One for storing Wikipedia articles and summaries
+
+     - Another with vector indexes and embeddings for similarity search
 
 ## Usage
 
@@ -94,12 +106,6 @@ A modular pipeline for LLM observability, evaluation, and summarization using **
 
 ### Evaluation
 
-- **Evaluate QA dataset**
-
-  ```bash
-  uv run src/evaluation/evaluate_dataset.py
-  ```
-
 - **Evaluate summaries with Opik**
 
   Evaluate the summaries using BERT Score and Cosine Similarity:
@@ -108,15 +114,31 @@ A modular pipeline for LLM observability, evaluation, and summarization using **
   make run-evaluate-summaries
   ```
 
+- **Evaluate QA dataset**
+
   Evaluate a synthetic Q&A dataset on Hallucinations and Answer Relevancy:
 
   ```bash
   make run-evaluate-dataset
   ```
 
+### Semantic Search
+
+```bash
+run-search
+```
+
+### Testing
+
+- **Evaluate summaries with Opik**
+
+  ```bash
+  make run-tests
+  ```
+
 ### Dev Tools
 
-- **Lint, format, and type-check**
+- **Lint, format, type-check and clean up**
 
   ```bash
   make all
