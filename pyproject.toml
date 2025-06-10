@@ -128,7 +128,7 @@ strict_optional = true
 #########################
 
 [tool.pytest.ini_options]
-testpaths = [ "src/tests" ]
+testpaths = [ "tests" ]
 python_files = [ "test_*.py" ]
 addopts = "-ra -v -s"
 filterwarnings = [
