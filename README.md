@@ -46,7 +46,7 @@ Designed for **research**, **benchmarking**, and **experimentation**, the system
 ### Prerequisites
 
 - Python 3.12+
-- [`uv`](https://github.com/astral-sh/uv)
+- [uv](https://github.com/astral-sh/uv)
 - [ZenML](https://zenml.io/)
 - [Opik](https://www.comet.com/site/products/opik/)
 - [MongoDB](https://www.mongodb.com/)
