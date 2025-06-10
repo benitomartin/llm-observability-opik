@@ -24,12 +24,7 @@ Designed for **research**, **benchmarking**, and **experimentation**, the system
 ## Project Structure
 
 ```text
-.
-├── LICENSE
-├── Makefile
-├── README.md
-├── pyproject.toml
-├── uv.lock
+├── .github                    # CI pipeline
 ├── src
 │   ├── configs/               # Configs, prompts, and settings
 │   ├── data/                  # Evaluation data and crawled team data
@@ -38,7 +33,13 @@ Designed for **research**, **benchmarking**, and **experimentation**, the system
 │   ├── pipelines/             # ZenML pipeline entrypoints
 │   ├── search/                # Search observability utility
 │   ├── steps/                 # ZenML steps: ETL, dataset, summaries
-│   └── tests/                 # Unit tests
+├── tests/                     # Unit tests
+├── .pre-commit-config.yaml    # Pre-commit hooks
+├── LICENSE
+├── Makefile
+├── README.md
+├── pyproject.toml
+├── uv.lock
 ```
 
 ## Getting Started
