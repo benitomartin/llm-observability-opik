@@ -77,7 +77,7 @@ Designed for **research**, **benchmarking**, and **experimentation**, the system
 
 1. **Create MongoDB Account**
 
-   Create an account at [MongoDB Atlas](https://www.mongodb.com/):
+   Create an account at [MongoDB](https://www.mongodb.com/):
 
    - Get your `MONGODB_URI` and update your `.env` file accordingly
 
