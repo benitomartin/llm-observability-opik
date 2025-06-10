@@ -35,11 +35,10 @@ Designed for **research**, **benchmarking**, and **experimentation**, the system
 │   ├── steps/                 # ZenML steps: ETL, dataset, summaries
 ├── tests/                     # Unit tests
 ├── .pre-commit-config.yaml    # Pre-commit hooks
-├── LICENSE
-├── Makefile
-├── README.md
-├── pyproject.toml
-├── uv.lock
+├── LICENSE                    # License
+├── Makefile                   # Makefile commands
+├── README.md                  # Project description
+├── pyproject.toml             # Project dependencies
 ```
 
 ## Getting Started
