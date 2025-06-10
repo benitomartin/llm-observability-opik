@@ -58,13 +58,14 @@ insert-embeddings: ## Insert embeddings into the MongoDB collection
 	@echo "Embeddings inserted successfully."
 
 ################################################################################
-## Search Commands
+## Search Tracing Commands
 ################################################################################
 
-run-search: ## Run the search script
+run-tracing: ## Run the search script
 	@echo "Running the search script..."
-	uv run src/similarity/search.py
+	uv run src/search/search_tracing_opik.py
 	@echo "Search script run complete."
+
 
 ################################################################################
 ## Evaluation Commands
@@ -97,10 +98,19 @@ run-tests: ## Run all tests
 
 all: ruff mypy clean ## Run all linting and formatting commands
 
-ruff: ## Run Ruff formatter and linter with auto-fix
-	@echo "Running Ruff formatter and linter..."
+ruff-check: ## Check Ruff formatting
+	@echo "Checking Ruff formatting..."
 	uv run ruff format --check .
-	uv run ruff check . --fix
+	@echo "Ruff checks complete."
+
+ruff-format: ## Format code with Ruff
+	@echo "Formatting code with Ruff..."
+	uv run ruff format .
+	@echo "Formatting complete."
+
+ruff: ## Run Ruff linter with auto-fix
+	@echo "Running Ruff linter..."
+	uv run ruff check . --fix --exit-non-zero-on-fix
 	@echo "Ruff checks complete."
 
 mypy: ## Run MyPy static type checker

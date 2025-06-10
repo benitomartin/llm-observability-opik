@@ -6,7 +6,7 @@ from openai import OpenAI
 from zenml import step
 
 from src.configs.settings import Settings, YamlConfig
-from src.steps.generate_dataset.mongo_client import MongoVectorSearchClient
+from src.infra.mongo_search_client import MongoVectorSearchClient
 from src.steps.generate_dataset.questions import answer_query_with_context, questions
 
 

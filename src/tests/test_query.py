@@ -3,7 +3,7 @@ from unittest.mock import MagicMock, patch
 import pytest
 
 from src.configs.settings import Settings
-from src.similarity.search import answer_query_with_context
+from src.search.search_tracing_opik import answer_query_with_context
 
 
 @pytest.fixture
@@ -22,8 +22,8 @@ def fake_chat_response() -> MagicMock:
     return mock
 
 
-@patch("src.similarity.search.OpenAI")
-@patch("src.similarity.search.Settings", autospec=True)
+@patch("src.search.search_tracing_opik.OpenAI")
+@patch("src.search.search_tracing_opik.Settings", autospec=True)
 def test_answer_query_with_context(
     mock_settings_cls: MagicMock,
     mock_openai_cls: MagicMock,
@@ -59,7 +59,7 @@ def test_answer_query_with_context(
         }
     ]
 
-    with patch("src.similarity.search.MongoVectorSearchClient") as mock_client_cls:
+    with patch("src.search.search_tracing_opik.MongoVectorSearchClient") as mock_client_cls:
         mock_client_instance = mock_client_cls.return_value
         mock_client_instance.vector_search.return_value = fake_results
         mock_client_instance.close_connection.return_value = None

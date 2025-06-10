@@ -1,5 +1,10 @@
 # Football Teams AI Evaluation and Observability
 
+<p align="center">
+    <img src="img/llm-observability-opik.png" alt="Architecture">
+  </a>
+</p>
+
 A **modular pipeline** for evaluating and observing the performance of large language models (LLMs) applied to football teams' content. This project uses Wikipedia data about football teams to **generate summaries, create QA datasets**, and **evaluate model responses** using state-of-the-art tools:
 
 - **ZenML** for pipeline orchestration and experiment tracking
@@ -31,7 +36,7 @@ Designed for **research**, **benchmarking**, and **experimentation**, the system
 │   ├── evaluation/            # Summary and QA evaluation scripts
 │   ├── infra/                 # MongoDB vector index utilities
 │   ├── pipelines/             # ZenML pipeline entrypoints
-│   ├── similarity/            # Semantic similarity search utilities
+│   ├── search/                # Search observability utility
 │   ├── steps/                 # ZenML steps: ETL, dataset, summaries
 │   └── tests/                 # Unit tests
 ```
@@ -122,10 +127,10 @@ Designed for **research**, **benchmarking**, and **experimentation**, the system
   make run-evaluate-dataset
   ```
 
-### Semantic Search
+### Search Tracing
 
 ```bash
-run-search
+run-tracing
 ```
 
 ### Testing

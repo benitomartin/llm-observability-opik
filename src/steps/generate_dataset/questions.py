@@ -2,7 +2,7 @@ from typing import Any
 
 from src.configs.prompts import QUERY_PROMPT
 from src.configs.settings import Settings
-from src.steps.generate_dataset.mongo_client import MongoVectorSearchClient
+from src.infra.mongo_search_client import MongoVectorSearchClient
 
 questions = [
     "When was Real Madrid CF founded?",
