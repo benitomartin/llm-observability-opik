@@ -56,7 +56,7 @@ Designed for **research**, **benchmarking**, and **experimentation**, the system
 1. **Clone the repository**
 
    ```bash
-   git clone https://github.com/yourusername/llm-observability-opik.git
+   git clone https://github.com/benitomartin/llm-observability-opik.git
    cd llm-observability-opik
    ```
 
