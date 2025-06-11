@@ -26,9 +26,9 @@ zenml-logout: ## Login to ZenML using local mode
 	@echo "ZenML log out complete."
 
 
-run-team-pipeline: ## Run the ZenML team pipeline
+run-etl-pipeline: ## Run the ZenML team pipeline
 	@echo "Running the ZenML pipeline..."
-	uv run src/pipelines/team_pipeline.py
+	uv run src/pipelines/etl_pipeline.py
 	@echo "ZenML pipeline run complete."
 
 
