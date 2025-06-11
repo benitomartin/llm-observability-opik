@@ -10,7 +10,7 @@ settings.load_yaml()
 
 
 @pipeline
-def team_pipeline() -> None:
+def etl_pipeline() -> None:
     """
     ETL pipeline for crawling, parsing, and ingesting team data.
     """
@@ -24,4 +24,4 @@ def team_pipeline() -> None:
 
 if __name__ == "__main__":
     # Instantiate the pipeline object
-    team_pipeline()
+    etl_pipeline()

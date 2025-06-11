@@ -77,7 +77,7 @@ Designed for **research**, **benchmarking**, and **experimentation**, the system
 
 1. **Create MongoDB Account**
 
-   Create an account at [MongoDB](https://www.mongodb.com/):
+   Create an account at [MongoDB](https://www.mongodb.com/) and a and free cluster:
 
    - Get your `MONGODB_URI` and update your `.env` file accordingly
 
@@ -86,6 +86,12 @@ Designed for **research**, **benchmarking**, and **experimentation**, the system
      - One for storing Wikipedia articles and summaries
 
      - Another with vector indexes and embeddings for similarity search
+
+1. **Create an Opik/Comet ML Account**
+
+   Create an account at \[[Opik](https://www.comet.com/site/products/opik/)\], which is the evaluation platform from Comet ML:
+
+   - Get your `API_KEY` and configure it following this instructions (https://www.comet.com/docs/opik/tracing/sdk_configuration) with the `opik configure` command.
 
 ## Usage
 

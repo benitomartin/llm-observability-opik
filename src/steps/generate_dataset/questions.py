@@ -40,7 +40,7 @@ def answer_query_with_context(
 
     # Get LLM response
     response = openai_client.chat.completions.create(
-        model=settings.openai_llm_model, messages=[{"role": "user", "content": prompt}]
+        model=settings.openai_llm_judge_model, messages=[{"role": "user", "content": prompt}]
     )
 
     return response.choices[0].message.content or ""

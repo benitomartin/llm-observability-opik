@@ -78,7 +78,7 @@ run-evaluate-summaries: ## Run the evaluation script
 
 run-evaluate-dataset: ## Evaluate the dataset using the MongoDB collection
 	@echo "Evaluating the dataset using the MongoDB collection..."
-	uv run src/evaluation/evaluate_dataset.py
+	uv run src/evaluation/evaluate_dataset_opik.py
 	@echo "Dataset evaluation complete."
 
 

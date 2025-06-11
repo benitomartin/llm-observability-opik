@@ -78,7 +78,7 @@ def evaluate_llm_app(settings: Settings, qa_data: list[dict[str, str]]) -> None:
         settings: Loaded Settings object containing model and API key.
         qa_data: List of question-answer dicts to evaluate.
     """
-    model = settings.openai_llm_judge_model
+    model = settings.openai_llm_model
     openai_client = initialize_openai_client(settings.openai_api_key)
     llm_app = get_llm_application(model, openai_client)
 
