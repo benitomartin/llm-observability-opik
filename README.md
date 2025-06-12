@@ -28,7 +28,7 @@ Designed for **research**, **benchmarking**, and **experimentation**, the system
 ├── src
 │   ├── configs/               # Configs, prompts, and settings
 │   ├── data/                  # Evaluation data and crawled team data
-│   ├── evaluation/            # Summary and QA evaluation scripts
+│   ├── evaluation/            # Summary & QA evaluation scripts
 │   ├── infra/                 # MongoDB vector index utilities
 │   ├── pipelines/             # ZenML pipeline entrypoints
 │   ├── search/                # Search observability utility
