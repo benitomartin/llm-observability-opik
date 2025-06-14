@@ -12,6 +12,8 @@
 </div>
 <div align="center">
     <a href="https://github.com/astral-sh/uv"><img src="https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/uv/main/assets/badge/v0.json"/></a>
+    <a href="https://pydantic.dev/"><img src="https://img.shields.io/badge/Pydantic-Data%20Validation-e92063"/></a>
+    <a href="https://github.com/features/actions"><img src="https://img.shields.io/badge/GitHub%20Actions-CI%2FCD-2088ff?logo=github-actions&logoColor=white"/></a>
     <a href="http://mypy-lang.org/"><img src="http://www.mypy-lang.org/static/mypy_badge.svg"/></a>
     <a href="https://github.com/astral-sh/ruff"><img src="https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json"/></a>
     <a href="https://docs.pytest.org/"><img src="https://img.shields.io/badge/pytest-enabled-brightgreen"/></a>
