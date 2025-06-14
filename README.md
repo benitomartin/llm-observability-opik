@@ -113,13 +113,13 @@ Designed for **research**, **benchmarking**, and **experimentation**, the system
 
    Create an account at [Opik](https://www.comet.com/site/products/opik/), which is the evaluation platform from Comet ML:
 
-   - Get your `API_KEY` and configure it following this [instructions](https://www.comet.com/docs/opik/tracing/sdk_configuration) with the `opik configure` command.
+   - Get your `COMET_API_KEY`, add it to your `.env` file, and configure Opik with the following command and the [official configuration guide](https://www.comet.com/docs/opik/tracing/sdk_configuration):
 
 ## Usage
 
 ### Pipelines
 
-- **Start ZenML**
+- **Start ZenML Locally**
 
   ```bash
   make zenml-login
