@@ -7,7 +7,7 @@
 <div align="center">
     <a href="https://www.python.org/downloads/release/python-3120/"><img src="https://img.shields.io/badge/python-3.12+-blue.svg"/></a>
     <a href="https://github.com/astral-sh/uv"><img src="https://img.shields.io/badge/uv-Package%20Manager-blue"/></a>
-    <a href="https://zenml.io/"><img src="https://img.shields.io/badge/ZenML-Pipeline%20Orchestration-orange"/></a>
+    <a href="https://zenml.io/"><img src="https://img.shields.io/badge/ZenML-Orchestration-orange"/></a>
     <a href="https://www.mongodb.com/"><img src="https://img.shields.io/badge/MongoDB-Database-green"/></a>
     <a href="https://www.comet.com/site/products/opik/"><img src="https://img.shields.io/badge/Opik-LLM%20Observability-purple"/></a>
     <a href="https://pydantic.dev/"><img src="https://img.shields.io/badge/Pydantic-Data%20Validation-e92063"/></a>
