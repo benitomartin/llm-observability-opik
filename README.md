@@ -12,6 +12,7 @@
     <a href="https://www.comet.com/site/products/opik/"><img src="https://img.shields.io/badge/Opik-LLM%20Observability-purple"/></a>
 </div>
 <div align="center">
+    <a href="https://pydantic.dev/"><img src="https://img.shields.io/badge/Pydantic-Data%20Validation-e92063"/></a>
     <a href="https://github.com/features/actions"><img src="https://img.shields.io/badge/GitHub%20Actions-CI%20CD-2088ff"/></a>
     <a href="http://mypy-lang.org/"><img src="http://www.mypy-lang.org/static/mypy_badge.svg"/></a>
     <a href="https://github.com/astral-sh/ruff"><img src="https://img.shields.io/badge/Ruff-Linting%20Formatting-red"/></a>
