@@ -89,14 +89,6 @@ Designed for **research**, **benchmarking**, and **experimentation**, the system
    source ./.venv/bin/activate
    ```
 
-1. **Configure environment**
-
-   Copy `.env.example` to `.env` and update with your credentials (`COMET_API_KEY`, `MONGODB_URI` and `OPENAI_API_KEY`):
-
-   ```bash
-   cp .env.example .env
-   ```
-
 1. **Create MongoDB Account**
 
    Create an account at [MongoDB](https://www.mongodb.com/) and a free cluster:
@@ -118,6 +110,14 @@ Designed for **research**, **benchmarking**, and **experimentation**, the system
        ```bash
         opik configure
        ```
+
+1. **Configure environment**
+
+   Copy `.env.example` to `.env` and update with your credentials (`COMET_API_KEY`, `MONGODB_URI` and `OPENAI_API_KEY`):
+
+   ```bash
+   cp .env.example .env
+   ```
 
 ## Usage
 
