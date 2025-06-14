@@ -38,7 +38,7 @@ Designed for **research**, **benchmarking**, and **experimentation**, the system
 
 - **ETL Pipeline**: Crawl, parse, and ingest Wikipedia articles into MongoDB.
 - **Summarization Pipeline**: Generate summaries for each article using LLMs.
-- **Evaluation Pipelines**: Score summaries and QA datasets using BERTScore, cosine similarity, and Opik metrics.
+- **Evaluation Pipelines**: Score summaries and QA datasets using BERTScore, cosine similarity, answer relevancy, and hallucinations.
 - **Experiment Tracking**: Integrated with **ZenML** and **Opik** for experiment and metric visualization.
 - **Configurable**: Customize settings via YAML and environment variables.
 
