@@ -66,9 +66,10 @@ Designed for **research**, **benchmarking**, and **experimentation**, the system
 
 ### Prerequisites
 
-- Python 3.12+
+- [Python 3.12+](https://www.python.org/downloads/release/python-3120/)
 - [uv](https://github.com/astral-sh/uv)
 - [ZenML](https://zenml.io/)
+- [OpenAI](https://openai.com/) 
 - [Opik](https://www.comet.com/site/products/opik/)
 - [MongoDB](https://www.mongodb.com/)
 
@@ -90,7 +91,7 @@ Designed for **research**, **benchmarking**, and **experimentation**, the system
 
 1. **Configure environment**
 
-   Copy `.env.example` to `.env` and update with your credentials:
+   Copy `.env.example` to `.env` and update with your credentials (`COMET_API_KEY`, `MONGODB_URI` and `OPENAI_API_KEY`):
 
    ```bash
    cp .env.example .env
