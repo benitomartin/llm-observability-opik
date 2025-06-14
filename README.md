@@ -1,11 +1,30 @@
 # Football Teams AI Evaluation and Observability
 
+<div align="center">
+    <img src="img/llm-observability-opik.png" alt="Football Teams AI Architecture">
+</div>
+
+<div align="center">
+    <a href="https://www.python.org/downloads/release/python-3120/"><img src="https://img.shields.io/badge/python-3.12+-blue.svg"/></a>
+    <a href="https://zenml.io/"><img src="https://img.shields.io/badge/ZenML-Pipeline%20Orchestration-orange"/></a>
+    <a href="https://www.mongodb.com/"><img src="https://img.shields.io/badge/MongoDB-Vector%20Storage-green"/></a>
+    <a href="https://www.comet.com/site/products/opik/"><img src="https://img.shields.io/badge/Opik-LLM%20Observability-purple"/></a>
+</div>
+<div align="center">
+    <a href="https://github.com/astral-sh/uv"><img src="https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/uv/main/assets/badge/v0.json"/></a>
+    <a href="http://mypy-lang.org/"><img src="http://www.mypy-lang.org/static/mypy_badge.svg"/></a>
+    <a href="https://github.com/astral-sh/ruff"><img src="https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json"/></a>
+    <a href="https://docs.pytest.org/"><img src="https://img.shields.io/badge/pytest-enabled-brightgreen"/></a>
+    <a href="https://github.com/pre-commit/pre-commit"><img src="https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white"/></a>
+    <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-yellow.svg"/></a>
+</div>
 <p align="center">
-    <img src="img/llm-observability-opik.png" alt="Architecture">
-  </a>
+    <em>A modular pipeline for evaluating and observing LLM performance on football teams' content</em>
 </p>
 
-A **modular pipeline** for evaluating and observing the performance of large language models (LLMs) applied to football teams' content. This project uses Wikipedia data about football teams to **generate summaries, create QA datasets**, and **evaluate model responses** using state-of-the-art tools:
+---
+
+A **complete, observable LLM pipeline** for evaluating and observing the performance of large language models (LLMs) applied to football teams' content. This project uses Wikipedia data about football teams to **generate summaries, create QA datasets**, and **evaluate model responses** using state-of-the-art tools:
 
 - **ZenML** for pipeline orchestration and experiment tracking
 - **MongoDB** for structured storage and vector-based retrieval
