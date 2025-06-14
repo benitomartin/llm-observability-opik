@@ -99,7 +99,7 @@ Designed for **research**, **benchmarking**, and **experimentation**, the system
 
 1. **Create MongoDB Account**
 
-   Create an account at [MongoDB](https://www.mongodb.com/) and a and free cluster:
+   Create an account at [MongoDB](https://www.mongodb.com/) and a free cluster:
 
    - Get your `MONGODB_URI` and update your `.env` file accordingly
 
@@ -115,7 +115,17 @@ Designed for **research**, **benchmarking**, and **experimentation**, the system
 
    - Get your `COMET_API_KEY`, add it to your `.env` file, and configure Opik with the following command and the [official configuration guide](https://www.comet.com/docs/opik/tracing/sdk_configuration):
 
+       ```bash
+        opik configure
+       ```
+
 ## Usage
+
+To check all available make commands run:
+
+  ```bash
+  make help
+  ```
 
 ### Pipelines
 
@@ -156,6 +166,8 @@ Designed for **research**, **benchmarking**, and **experimentation**, the system
   ```
 
 ### Search Tracing
+
+Run a single query for testing:
 
 ```bash
 run-tracing
