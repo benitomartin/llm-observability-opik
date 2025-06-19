@@ -138,7 +138,7 @@ To check all available make commands run:
 - **ETL pipeline**
 
   ```bash
-  make run-team-pipeline
+  make run-etl-pipeline
   ```
 
 - **Summarization pipeline**
